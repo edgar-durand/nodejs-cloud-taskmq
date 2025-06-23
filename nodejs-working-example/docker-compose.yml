@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7.2-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
+  mongodb:
+    image: mongo:7.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: cloudtaskmq-example
+
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - STORAGE_ADAPTER=redis
+      - REDIS_URL=redis://redis:6379
+      - MONGODB_URL=mongodb://mongodb:27017/cloudtaskmq-example
+    depends_on:
+      - redis
+      - mongodb
+    volumes:
+      - ./src:/app/src
+      - ./uploads:/app/uploads
+      - ./processed:/app/processed
+
+volumes:
+  redis_data:
+  mongodb_data:
