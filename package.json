@@ -1,0 +1,85 @@
+{
+  "name": "nodejs-cloud-taskmq",
+  "version": "1.0.0",
+  "description": "Node.js TypeScript library for integrating Google Cloud Tasks with MongoDB/Redis/Memory/Custom for a BullMQ-like queue system. Compatible with NestJS but framework-agnostic.",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "jest",
+    "test:integration": "jest --testPathPattern=integration",
+    "test:integration:mongo": "jest --testPathPattern=integration-mongodb",
+    "test:integration:redis": "jest --testPathPattern=integration-redis",
+    "test:unit": "jest --testPathIgnorePatterns=integration",
+    "docker:test:up": "docker-compose -f docker-compose.test.yml up -d",
+    "docker:test:down": "docker-compose -f docker-compose.test.yml down -v",
+    "lint": "eslint \"src/**/*.ts\" --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build",
+    "dev": "ts-node src/index.ts"
+  },
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "cloud-tasks",
+    "queue",
+    "decorators",
+    "google-cloud",
+    "mongodb",
+    "redis",
+    "bullmq",
+    "task-queue",
+    "rate-limiting",
+    "nestjs-compatible"
+  ],
+  "dependencies": {
+    "@google-cloud/tasks": "^4.0.0",
+    "async": "^3.2.6",
+    "express": "^4.18.2",
+    "ioredis": "^5.6.1",
+    "reflect-metadata": "^0.1.13",
+    "uuid": "^9.0.0"
+  },
+  "peerDependencies": {
+    "mongoose": "^8.16.0"
+  },
+  "peerDependenciesMeta": {
+    "mongoose": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.15.11",
+    "@types/uuid": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^29.5.0",
+    "prettier": "^3.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edgar-durand/nodejs-cloud-taskmq.git"
+  },
+  "homepage": "https://github.com/edgar-durand/nodejs-cloud-taskmq#readme",
+  "bugs": {
+    "url": "https://github.com/edgar-durand/nodejs-cloud-taskmq/issues"
+  },
+  "author": "Your Name <edgarduranddiaz@gmail.com>"
+}
