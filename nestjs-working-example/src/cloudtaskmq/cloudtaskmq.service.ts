@@ -50,23 +50,24 @@ export class CloudTaskMQService implements OnModuleInit, OnModuleDestroy {
     return this.getInstance().getTask(taskId);
   }
 
-  async getQueueStats(queueName: string) {
-    return this.getInstance().getQueueStats(queueName);
-  }
+  // TODO: These methods are not available in current CloudTaskMQ version
+  // async getQueueStats(queueName: string) {
+  //   return this.getInstance().getQueueStats(queueName);
+  // }
 
-  async retryTask(taskId: string) {
-    return this.getInstance().retryTask(taskId);
-  }
+  // async retryTask(taskId: string) {
+  //   return this.getInstance().retryTask(taskId);
+  // }
 
   async cleanup(options?: any) {
     return this.getInstance().cleanup(options);
   }
 
-  async pauseQueue(queueName: string) {
-    return this.getInstance().pauseQueue(queueName);
-  }
+  // async pauseQueue(queueName: string) {
+  //   return this.getInstance().pauseQueue(queueName);
+  // }
 
-  async resumeQueue(queueName: string) {
-    return this.getInstance().resumeQueue(queueName);
-  }
+  // async resumeQueue(queueName: string) {
+  //   return this.getInstance().resumeQueue(queueName);
+  // }
 }

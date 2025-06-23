@@ -13,10 +13,10 @@ import { ProcessorsModule } from './processors/processors.module';
 // Controllers
 import { AppController } from './app.controller';
 import { TasksController } from './controllers/tasks.controller';
-import { UploadController } from './controllers/upload.controller';
-import { QueuesController } from './controllers/queues.controller';
-import { ProcessorsController } from './controllers/processors.controller';
-import { DashboardController } from './controllers/dashboard.controller';
+// import { UploadController } from './controllers/upload.controller';
+// import { QueuesController } from './controllers/queues.controller';
+// import { ProcessorsController } from './controllers/processors.controller';
+// import { DashboardController } from './controllers/dashboard.controller';
 
 // Services
 import { AppService } from './app.service';
@@ -47,10 +47,10 @@ import { AppService } from './app.service';
   controllers: [
     AppController,
     TasksController,
-    UploadController,
-    QueuesController,
-    ProcessorsController,
-    DashboardController,
+    // UploadController,
+    // QueuesController,
+    // ProcessorsController,
+    // DashboardController,
   ],
   providers: [AppService],
 })

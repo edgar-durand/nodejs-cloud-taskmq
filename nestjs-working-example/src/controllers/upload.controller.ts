@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags, ApiOperation, ApiResponse, ApiConsumes } from '@nestjs/swagger';
-import { multer } from 'multer';
+import * as multer from 'multer';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { CloudTaskMQService } from '../cloudtaskmq/cloudtaskmq.service';
@@ -78,7 +78,7 @@ export class UploadController {
         
         tasks.push({
           type: 'image-processing',
-          taskId: imageTask.id,
+          taskId: imageTask.taskId,
           queueName: 'image-processing-queue',
         });
       }
@@ -96,7 +96,7 @@ export class UploadController {
         
         tasks.push({
           type: 'thumbnail-generation',
-          taskId: thumbnailTask.id,
+          taskId: thumbnailTask.taskId,
           queueName: 'thumbnail-queue',
         });
       }
@@ -191,7 +191,7 @@ export class UploadController {
       return {
         success: true,
         batchId,
-        taskId: batchTask.id,
+        taskId: batchTask.taskId,
         queueName: 'batch-queue',
         fileCount: fileData.length,
         files: fileData.map(file => ({

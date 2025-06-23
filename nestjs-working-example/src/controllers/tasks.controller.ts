@@ -30,7 +30,7 @@ export class TasksController {
       
       return {
         success: true,
-        taskId: task.id,
+        taskId: task.taskId,
         queueName: 'email-queue',
         data: emailData,
         message: 'Email task queued successfully',
@@ -52,7 +52,7 @@ export class TasksController {
       
       return {
         success: true,
-        taskId: task.id,
+        taskId: task.taskId,
         queueName: 'welcome-email-queue',
         data: welcomeData,
         message: 'Welcome email task queued successfully',
@@ -74,7 +74,7 @@ export class TasksController {
       
       return {
         success: true,
-        taskId: task.id,
+        taskId: task.taskId,
         queueName: 'image-processing-queue',
         data: imageData,
         message: 'Image processing task queued successfully',
@@ -96,7 +96,7 @@ export class TasksController {
       
       return {
         success: true,
-        taskId: task.id,
+        taskId: task.taskId,
         queueName: 'data-export-queue',
         data: exportData,
         message: 'Data export task queued successfully',
@@ -118,7 +118,7 @@ export class TasksController {
       
       return {
         success: true,
-        taskId: task.id,
+        taskId: task.taskId,
         queueName: 'batch-queue',
         data: {
           batchId: batchData.batchId,
@@ -144,7 +144,7 @@ export class TasksController {
       
       return {
         success: true,
-        taskId: task.id,
+        taskId: task.taskId,
         queueName: 'notification-queue',
         data: notificationData,
         message: 'Notification task queued successfully',
@@ -179,27 +179,6 @@ export class TasksController {
         throw error;
       }
       
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
-
-  @Post(':taskId/retry')
-  @ApiOperation({ summary: 'Retry a failed task' })
-  @ApiParam({ name: 'taskId', description: 'Task ID to retry' })
-  @ApiResponse({ status: 200, description: 'Task retry initiated successfully' })
-  @ApiResponse({ status: 404, description: 'Task not found' })
-  async retryTask(@Param('taskId') taskId: string) {
-    try {
-      const result = await this.cloudTaskMQService.retryTask(taskId);
-      
-      return {
-        success: true,
-        taskId,
-        message: 'Task retry initiated successfully',
-        result,
-      };
-    } catch (error) {
-      this.logger.error(`Failed to retry task ${taskId}: ${error.message}`);
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
